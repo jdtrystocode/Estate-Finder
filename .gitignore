@@ -1,0 +1,11 @@
+# Node
+node_modules
+npm-debug.log
+.env
+
+# Frontend build
+dist
+.vite
+
+# Mac
+.DS_Store
