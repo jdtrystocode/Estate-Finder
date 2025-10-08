@@ -1,6 +1,5 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "https://estate-finder-y5gg.onrender.com/api/$1" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
