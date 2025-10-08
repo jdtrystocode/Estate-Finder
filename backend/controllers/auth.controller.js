@@ -60,6 +60,7 @@ export const login = async (req, res) => {
         httpOnly: true,
         secure:true,
         sameSite: "none",
+        path: "/",
         maxAge: age,
     }).status(200).json({message: userInfo});
     
@@ -76,6 +77,7 @@ export const logout = (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
+      path: "/",
     })
     .status(200)
     .json({ message: "Logout Successful" });
