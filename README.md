@@ -33,22 +33,23 @@ Deployed using **Vercel (frontend)** and **Render (backend + sockets)**.
 ---
 
 ## 📂 Project Structure
-ESTATEAPP/
-├── backend/        # Express.js + Prisma backend
-│    ├── app.js
-│    ├── routes/
-│    ├── controllers/
-│    ├── prisma/
-│    └── package.json
-│
-├── frontend/       # React + Vite frontend
-│    ├── src/
-│    ├── public/
-│    └── package.json
-│
-├── socket/         # Socket.IO server
-│    ├── app.js
-│    └── package.json
-│
-└── README.md
 
+```text
+ESTATEAPP/
+ ├── backend/        # Express.js + Prisma backend
+ │    ├── app.js
+ │    ├── routes/
+ │    ├── controllers/
+ │    ├── prisma/
+ │    └── package.json
+ │
+ ├── frontend/       # React + Vite frontend
+ │    ├── src/
+ │    ├── public/
+ │    └── package.json
+ │
+ ├── socket/         # Socket.IO server
+ │    ├── app.js
+ │    └── package.json
+ │
+ └── README.md
