@@ -11,19 +11,22 @@ import messageRoute from "./routes/message.route.js";
 
 const app = express();
 
-// ✅ CORS configuration
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL,   // must match your Vercel frontend URL
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true,                // allow cookies
-  })
-);
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,
+};
+
+// ✅ Enable CORS
+app.use(cors(corsOptions));
+
+// ✅ Explicitly handle OPTIONS preflight requests
+app.options("*", cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ Routes
+// Routes
 app.use("/api/posts", postRoute);
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
@@ -31,7 +34,6 @@ app.use("/api/test", testRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/messages", messageRoute);
 
-// ✅ Server
 const PORT = process.env.PORT || 8800;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
