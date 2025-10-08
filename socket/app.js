@@ -1,8 +1,13 @@
 import { Server } from "socket.io";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const io = new Server({
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
@@ -34,14 +39,12 @@ io.on("connection", (socket) => {
 
   socket.on("sendMessage", ({ receiverId, data }) => {
     const receiver = getUser(receiverId);
-    
-    // ✅ CRITICAL FIX: Check if receiver exists before emitting
+
     if (receiver && receiver.socketId) {
       io.to(receiver.socketId).emit("getMessage", data);
       console.log("Message sent to:", receiverId);
     } else {
       console.log("Receiver not online:", receiverId);
-      // Message is already saved in database, receiver will see it when they connect
     }
   });
 
@@ -52,4 +55,8 @@ io.on("connection", (socket) => {
   });
 });
 
-io.listen("4000");
+// ✅ use Render's PORT instead of hardcoding 4000
+const PORT = process.env.PORT || 4000;
+io.listen(PORT, () => {
+  console.log(`Socket.IO server running on port ${PORT}`);
+});
