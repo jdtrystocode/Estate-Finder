@@ -12,7 +12,7 @@ import messageRoute from "./routes/message.route.js";
 const app = express();
 
 const corsOptions = {
-  origin: process.env.CLIENT_URL,
+  origin: process.env.CLIENT_URL,   // e.g. https://estate-finder-two.vercel.app
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
 };
@@ -20,8 +20,8 @@ const corsOptions = {
 // ✅ Enable CORS
 app.use(cors(corsOptions));
 
-// ✅ Explicitly handle OPTIONS preflight requests
-app.options("*", cors(corsOptions));
+// ✅ Explicit OPTIONS handling (fixed for Express 5)
+app.options("/*", cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
