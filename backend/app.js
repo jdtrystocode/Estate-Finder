@@ -17,11 +17,8 @@ const corsOptions = {
   credentials: true,
 };
 
-// ✅ Enable CORS
+// ✅ Enable CORS (this will automatically handle OPTIONS in Express 5)
 app.use(cors(corsOptions));
-
-// ✅ Explicit OPTIONS handling (fixed for Express 5)
-app.options("/*", cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
